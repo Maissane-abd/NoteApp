@@ -20,7 +20,7 @@ export default function DisplayedNote() {
       </Link>
       <Link
       to={`/editer/${id}`}
-      className="px-2 py-1 text-slate-200 bg-green-600 rounded mr-2"
+      className ="px-2 py-1 text-slate-200 bg-green-600 rounded mr-2"
       >
         Mettre à jour
       </Link>
