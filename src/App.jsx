@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from "react-redux"
 import { getNotesFromApi } from "./features/note"
 import Sidebar from "./components/Sidebar"
 import SideNotes  from "./components/SideNotes"
+import {BrowserRouter, Routes, Route} from "react-router-dom" 
 
 
 function App() {
@@ -12,10 +13,15 @@ function App() {
   if (!notes.list){
     dispatch(getNotesFromApi())
   }
+
   return <div className="bg-slate-800 min-h-screen flex">
+  <BrowserRouter>
   <Sidebar/> 
   <SideNotes/>
-  <NotesList/>
+  <Routes>
+    <Route path='/' element={<NotesList/>} />
+  </Routes>
+  </BrowserRouter>
   </div>
 }
 
