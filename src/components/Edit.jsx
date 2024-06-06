@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react"
-
+import { useSelector, useDispatch } from "react-redux"
+import { nanoid } from "nanoid"
+import { useParams } from "react-router-dom"
 export default function Edit() {
+  const dispatch = useDispatch()
+  const notes = useSelector(state => state.notes)
 
   const [inputsStates, setInputsStates] = useState({
     title: "",
@@ -12,6 +16,37 @@ export default function Edit() {
     subtitle: false,
     bodyText: false,
   })
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    if (Object.values(inputsStates).every(value => value)) {
+      setshowValidation({
+        title: false,
+        subtitle: false,
+        bodyText: false,
+      })
+
+
+        dispatch(addNoteFromUser({ ...inputsStates, id: nanoid(8) }))
+        setInputsStates({
+          title: "",
+          subtitle: "",
+          bodyText: "",
+        })
+    
+    } 
+    else {
+      for(const [key, value] of Object.entries(inputsStates)) {
+        if(value.length === 0) {
+          setshowValidation(state => ({...state, [key]: true}))
+        } else {
+          setshowValidation(state => ({...state, [key]: false}))
+        }
+      }
+    }
+   
+  }
 
   return (
     <div className="w-full p-10">
