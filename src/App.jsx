@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from "react-redux"
 import { getNotesFromApi } from "./features/note"
 import Sidebar from "./components/Sidebar"
 import SideNotes  from "./components/SideNotes"
+import DisplayedNotes from "./components/DisplayedNotes"
 import {BrowserRouter, Routes, Route} from "react-router-dom" 
 
 
@@ -20,6 +21,7 @@ function App() {
   <SideNotes/>
   <Routes>
     <Route path='/' element={<NotesList/>} />
+    <Route path="/note/:id" element={<DisplayedNotes/>}/>
   </Routes>
   </BrowserRouter>
   </div>
