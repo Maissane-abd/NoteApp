@@ -3,6 +3,7 @@ import React from 'react';
 
 // Importation du hook useSelector de react-redux pour accéder à l'état du store Redux
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom"
 
 // Définition et exportation par défaut du composant fonctionnel NotesList
 export default function NotesList() {
@@ -20,24 +21,27 @@ return (
         </p>
 
         {/* Div pour afficher les notes */}
-        <div className='grid lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-6'>
+        <ul className='grid lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-6'>
            
             {/* Vérification de la présence de notes et affichage conditionnel */}
             {notes.list?.length > 0 && notes.list.map(note => (
               
               // Div pour chaque note avec des classes CSS pour le style
-                <div 
+                <li 
                 key={note.id}
                 className='bg-slate-100 hover:bg-slate-50 p-4 rounded cursor-pointer'>
                 
                     {/* Titre de la note */}
-                    <p className='text-lg font-semibold'>{note.title}</p>
+                    <Link to={`/note/${note.id}`} className="block p-4 w-full h-full ">
+                <p className="text-lg font-semibold">{note.title}</p>
+                
                 
                     {/* Sous-titre de la note */}
-                    <p className='text-gray-700'>{note.subtitle}</p>
-                </div>
+                    <p className="text-gray-700">{note.subtitle}</p>
+              </Link>
+                </li>
             ))}
-        </div> 
+        </ul> 
     </div>
 );
 

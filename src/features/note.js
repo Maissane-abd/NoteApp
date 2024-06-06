@@ -15,7 +15,18 @@ export const notes = createSlice({
         addNotesFromApi: (state, action) => {
             // Mise à jour de l'état avec les données reçues dans l'action
             state.list = action.payload;
-        }
+        },
+        addNoteFromUser: (state, action) => {
+            state.list.push(action.payload)
+          },
+          editNote: (state,action) => {
+            const noteToEditIndex = state.list.findIndex(note => note.id === action.payload.id)
+      
+            state.list[noteToEditIndex] = action.payload
+          },
+        deleteNote: (state, action) => {
+            state.list = state.list.filter(note => note.id !== action.payload)
+          }
     }
 })
 
@@ -33,7 +44,7 @@ export function getNotesFromApi(action) {
 }
 
 // Exportation du réducteur addNotesFromApi pour qu'il puisse être utilisé
-export const { addNotesFromApi } = notes.actions;
+export const { addNotesFromApi, addNoteFromUser, editNote, deleteNote } = notes.actions;
 
 // Exportation du réducteur du slice "notes"
 export default notes.reducer;

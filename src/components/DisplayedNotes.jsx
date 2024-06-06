@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { useNavigate, useParams } from "react-router-dom"
-
+import {deleteNote} from "../features/note"
 export default function DisplayedNote() {
   const notes = useSelector(state => state.notes)
   const dispatch = useDispatch()
