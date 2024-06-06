@@ -10,9 +10,9 @@ function App() {
   if (!notes.list){
     dispatch(getNotesFromApi())
   }
-  return <>
+  return <div className="bg-slate-800 min-h-screen flex">
   <NotesList/>
-  </>
+  </div>
 }
 
 export default App
