@@ -2,6 +2,7 @@ import NotesList from "./components/NotesList"
 import {useSelector, useDispatch} from "react-redux"
 import { getNotesFromApi } from "./features/note"
 import Sidebar from "./components/Sidebar"
+import SideNotes  from "./components/SideNotes"
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
     dispatch(getNotesFromApi())
   }
   return <div className="bg-slate-800 min-h-screen flex">
-  <Sidebar/>
+  <Sidebar/> 
+  <SideNotes/>
   <NotesList/>
   </div>
 }

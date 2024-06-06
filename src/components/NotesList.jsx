@@ -26,7 +26,9 @@ return (
             {notes.list?.length > 0 && notes.list.map(note => (
               
               // Div pour chaque note avec des classes CSS pour le style
-                <div className='bg-slate-100 hover:bg-slate-50 p-4 rounded cursor-pointer'>
+                <div 
+                key={note.id}
+                className='bg-slate-100 hover:bg-slate-50 p-4 rounded cursor-pointer'>
                 
                     {/* Titre de la note */}
                     <p className='text-lg font-semibold'>{note.title}</p>
