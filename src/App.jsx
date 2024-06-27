@@ -10,8 +10,11 @@ import DisplayedNote from "./components/DisplayedNotes"
 
 function App() {
   const dispatch = useDispatch()
-  const notes = useSelector(state => state.notes)
+  const notes = useSelector(state => state.notes) // Sélectionne l'état des notes depuis le store
+
   console.log(notes)
+
+  // Vérifie si la liste de notes n'est pas encore chargée, puis lance une action pour les récupérer depuis une API pour qu'elle soit sauvegarder en mémoire
   if (!notes.list){
     dispatch(getNotesFromApi())
   }

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { nanoid } from "nanoid"
+import { nanoid } from "nanoid" // Création automatique d'un id
 import {addNoteFromUser, editNote} from "../features/note.js"
 import { useParams } from "react-router-dom"
+
 export default function Edit() {
   const dispatch = useDispatch()
   const notes = useSelector(state => state.notes)
 
+  // État local pour gérer les valeurs des champs de formulaire et les validations
   const [inputsStates, setInputsStates] = useState({
     title: "",
     subtitle: "",
@@ -18,8 +20,11 @@ export default function Edit() {
     bodyText: false,
   })
 
+  // Recupere l'id de la note
   const {id} = useParams()
 
+  // useEffect pour mettre à jour les valeurs des champs de formulaire lorsqu'un ID est spécifié
+  // Si un ID est fourni et que la liste de notes existe, préremplir les champs de formulaire avec les données de la note correspondante
   useEffect(() => {
     if(id && notes.list) {
       setInputsStates({
@@ -39,13 +44,17 @@ export default function Edit() {
   function handleSubmit(e) {
     e.preventDefault()
 
+    // Vérifie si tous les champs requis sont remplis
     if (Object.values(inputsStates).every(value => value)) {
+       // Réinitialisation de l'affichage des messages de validation
       setshowValidation({
         title: false,
         subtitle: false,
         bodyText: false,
       })
 
+       // Si un ID existe et que la liste de notes est présente, éditer la note existante
+       // Sinon, ajouter une nouvelle note avec un ID généré aléatoirement
       if(id && notes.list) {
         dispatch(editNote({...inputsStates, id}))
       } else {
@@ -58,6 +67,7 @@ export default function Edit() {
       }
     } 
     else {
+      // Si certains champs sont vides, activer les messages de validation correspondants
       for(const [key, value] of Object.entries(inputsStates)) {
         if(value.length === 0) {
           setshowValidation(state => ({...state, [key]: true}))

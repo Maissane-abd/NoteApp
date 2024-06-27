@@ -1,19 +1,12 @@
 // Importation de la bibliothèque React pour créer des composants
 import React from 'react';
-
-// Importation du hook useSelector de react-redux pour accéder à l'état du store Redux
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 
-// Définition et exportation par défaut du composant fonctionnel NotesList
 export default function NotesList() {
     // Utilisation du hook useSelector pour accéder à l'état des notes dans le store Redux
-    // Cette ligne extrait la partie de l'état global qui correspond aux notes
     const notes = useSelector(state => state.notes);
 
-    // Rendu du composant NotesList
-    // Pour l'instant, il retourne simplement un div avec le texte "NotesList"
-    // Rendu de l'interface utilisateur
 return (
     <div className='p-10 w-full'>
         <p className='text-xl text-slate-200 mb-6'>

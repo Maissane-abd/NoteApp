@@ -6,9 +6,11 @@ import notes from "./features/note";
 
 // Configuration du store Redux
 export const store = configureStore({
-    // Définition des réducteurs pour le store
+
+    // Définition des réduceurs pour le store
     reducer: {
-        // Ajout du réducteur du slice "notes" sous la clé "notes"
+
+        // Ajout du réduceur du slice "notes" sous la clé "notes"
         notes
     }
 });
